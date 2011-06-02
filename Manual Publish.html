@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<title>Widget Sample - Manual Publish</title>
+	<script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
+	<script src='../_OT.js'></script>
+</head>
+
+<body>
+
+	<div id='widgetContainer' style='background: #222'></div>
+	
+	<script type='text/javascript'>
+	
+		// Set OpenTok variables
+		var session = TB.initSession('28757622dbf26a5a7599c2d21323765662f1d436');
+		var api_key = '1127';
+		var token = 'devtoken';
+		
+		var widget = _OT.widget;
+		
+		// Initialize the widget
+		widget.init(session, 'widgetContainer', { autoPublish: false });
+		
+		// Connect to the session
+		session.connect(api_key, token);
+		
+		// In the widget.init() call we said not to autoPublish, so instead
+		// we call widget.publish() and pass it properties
+		setTimeout(function() {
+			widget.publish({ publisherSize: 'large', name: "OpenTok User 123" });
+		}, 8000);
+		
+	</script>
+
+
+</body>
+</html>
