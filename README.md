@@ -31,14 +31,22 @@ Browse the [Samples directory](https://github.com/jonmumm/OpenTok-Plugins/tree/m
 
 ### Methods
 
-	_OT.widget.init()
-Lorem ipsum dolor.
+#### _OT.widget.init(session, divId, properties)
+Initializes the widget, publishes the users stream, and subscribes to all other streams.
 
-	_OT.widget.publish()
-Lorem ipsum dolor.
+**session** 
 
-	_OT.widget.unpublish()
-Lorem ipsum dolor.
+**divId**
 
-	_OT.widget.destroy()
-Lorem ipsum dolor.
+**properties**
+
+#### _OT.widget.publish(properties)
+Publishes the users stream to the session.  You only need to call this if you pass **{ autoPublish: false }** as a property in _OT.widget.init().
+
+**properties**
+
+#### _OT.widget.unpublish()
+Unpublishes the users stream.
+
+#### _OT.widget.destroy()
+Removes all streams from the widget.
