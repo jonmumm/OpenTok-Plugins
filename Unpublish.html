@@ -4,9 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-	<title>Widget Sample - Basic</title>
+	<title>Widget Sample - Unpublish</title>
 	<script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
-	<script src='../_OT.js'></script>
+	<script src='_OT.js'></script>
 </head>
 
 <body>
@@ -22,11 +22,16 @@
 		
 		var widget = _OT.widget;
 		
-		// Initialize the widget and pass it properties
-		widget.init(session, 'widgetContainer', { width: '500', height: '400', publisherSize: 'medium', name: 'OpenTok User 123' });
+		// Initialize the widget
+		widget.init(session, 'widgetContainer');
 		
 		// Connect to the session
 		session.connect(api_key, token);
+		
+		// Unpublish the stream after 20 seconds
+		setTimeout(function() {
+			widget.unpublish();
+		}, 20000);
 		
 	</script>
 

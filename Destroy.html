@@ -4,9 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-	<title>Widget Sample - Unpublish</title>
+	<title>Widget Sample - Destroy</title>
 	<script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
-	<script src='../_OT.js'></script>
+	<script src='_OT.js'></script>
 </head>
 
 <body>
@@ -28,9 +28,9 @@
 		// Connect to the session
 		session.connect(api_key, token);
 		
-		// Unpublish the stream after 20 seconds
+		// Destroy the stream after 20 seconds
 		setTimeout(function() {
-			widget.unpublish();
+			widget.destroy();
 		}, 20000);
 		
 	</script>
