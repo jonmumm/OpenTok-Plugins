@@ -34,16 +34,16 @@ Browse the [Samples directory](https://github.com/jonmumm/OpenTok-Plugins/tree/m
 #### _OT.widget.init(session, divId, properties)
 Initializes the widget, publishes the users stream, and subscribes to all other streams.
 
-**session** 
+_session_
 
-**divId**
+_divId_
 
-**properties**
+_properties_
 
 #### _OT.widget.publish(properties)
-Publishes the users stream to the session.  You only need to call this if you pass **{ autoPublish: false }** as a property in _OT.widget.init().
+Publishes the users stream to the session.  You only need to call this if you pass _{ autoPublish: false }_ as a property in _OT.widget.init().
 
-**properties**
+_properties_
 
 #### _OT.widget.unpublish()
 Unpublishes the users stream.
