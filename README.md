@@ -31,31 +31,31 @@ Browse the [Samples directory](https://github.com/jonmumm/OpenTok-Plugins/tree/m
 
 ### Methods
 
-#### init(session, divId, properties)  
-Initializes the widget, publishes the users stream, and subscribes to all other streams.  This should be called _before_ Session.connect() is called.
+* _init(session, divId, properties)_
+	Initializes the widget, publishes the users stream, and subscribes to all other streams.  This should be called _before_ Session.connect() is called.
 
-**Parameters**  
-_session_: OpenTok Session object.  
-_divId_: ID of the DIV that will contain the widget.  
-_properties_: List of properties for changing the display of the widget.
+	**Parameters**  
+	_session_: OpenTok Session object.  
+	_divId_: ID of the DIV that will contain the widget.  
+	_properties_: List of properties for changing the display of the widget.
 
-* _width_: Width in pixels of the widget (default: _640_).
-* _height_: Height in pixels of the widget (default: _480_).
-* _publisherSize_: Size that the publisher is displayed at.  Accepts values 'small', 'medium', and 'large' (default: '_medium_').
-* _name_: String name of the publisher (default: '').
-* _autoPublish_: Boolean value on whether the widget should start publishing as soon as the session connects (default: _false_);
+	* _width_: Width in pixels of the widget (default: _640_).
+	* _height_: Height in pixels of the widget (default: _480_).
+	* _publisherSize_: Size that the publisher is displayed at.  Accepts values 'small', 'medium', and 'large' (default: '_medium_').
+	* _name_: String name of the publisher (default: '').
+	* _autoPublish_: Boolean value on whether the widget should start publishing as soon as the session connects (default: _false_);
 
-#### publish(properties)  
-Publishes the users stream to the session.  You only need to call this if you pass _{ autoPublish: false }_ as a property in init().
+* publish(properties)  
+	Publishes the users stream to the session.  You only need to call this if you pass _{ autoPublish: false }_ as a property in init().
 
-**Parameters**
-_properties_: List of properties for changing the display of the widget.
+	**Parameters**
+	_properties_: List of properties for changing the display of the widget.
 
-* _publisherSize_: Size that the publisher is displayed at.  Accepts values 'small', 'medium', and 'large' (default: '_medium_').
-* _name_: String name of the publisher (default: '').
+	* _publisherSize_: Size that the publisher is displayed at.  Accepts values 'small', 'medium', and 'large' (default: '_medium_').
+	* _name_: String name of the publisher (default: '').
 
-#### unpublish()  
-Unpublishes the users stream.
+* _unpublish()_
+	Unpublishes the users stream.
 
-#### destroy()  
-Removes all streams from the widget.
+* _destroy() _ 
+	Removes all streams from the widget.
