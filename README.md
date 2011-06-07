@@ -31,7 +31,7 @@ Browse the [Samples directory](https://github.com/jonmumm/OpenTok-Plugins/tree/m
 
 ### Methods
 
-* *_init(session, divId, properties)*  
+* **_init(session, divId, properties)**  
 	Initializes the widget, publishes the users stream, and subscribes to all other streams.  This should be called _before_ Session.connect() is called.
  
 	_session_: OpenTok Session object.  
@@ -44,7 +44,7 @@ Browse the [Samples directory](https://github.com/jonmumm/OpenTok-Plugins/tree/m
 	* _name_: String name of the publisher (default: '').
 	* _autoPublish_: Boolean value on whether the widget should start publishing as soon as the session connects (default: _false_);
 
-* *publish(properties)*  
+* **publish(properties)**  
 	Publishes the users stream to the session.  You only need to call this if you pass _{ autoPublish: false }_ as a property in init().
 
 	_properties_: List of properties for changing the display of the widget.
@@ -52,8 +52,8 @@ Browse the [Samples directory](https://github.com/jonmumm/OpenTok-Plugins/tree/m
 	* _publisherSize_: Size that the publisher is displayed at.  Accepts values 'small', 'medium', and 'large' (default: '_medium_').
 	* _name_: String name of the publisher (default: '').
 
-* *_unpublish()*  
+* **_unpublish()**  
 	Unpublishes the users stream.
 
-* *_destroy()_*  
+* **_destroy()_**  
 	Removes all streams from the widget.
