@@ -52,8 +52,8 @@ Browse the [Samples directory](https://github.com/jonmumm/OpenTok-Plugins/tree/m
 	* _publisherSize_: Size that the publisher is displayed at.  Accepts values 'small', 'medium', and 'large' (default: '_medium_').
 	* _name_: String name of the publisher (default: '').
 
-* **_unpublish()**  
+* **unpublish()**  
 	Unpublishes the users stream.
 
-* **_destroy()_**  
+* **destroy()**  
 	Removes all streams from the widget.
