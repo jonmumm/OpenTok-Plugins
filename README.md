@@ -31,7 +31,7 @@ Browse the [Samples directory](https://github.com/jonmumm/OpenTok-Plugins/tree/m
 
 ### Methods
 
-* **_init(session, divId, properties)**  
+* **init(session, divId, properties)**  
 	Initializes the widget, publishes the users stream, and subscribes to all other streams.  This should be called _before_ Session.connect() is called.
  
 	_session_: OpenTok Session object.  
