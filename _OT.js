@@ -90,7 +90,6 @@ _OT.widget = function() {
 	  ele.publisherContainer.appendChild(div);
 	  
 	  publisher = session.publish('publisher', { width: sizes.publisher.width, height: sizes.publisher.height, name: properties.name });
-	  publisher.addEventListener('accessAllowed', accessAllowedHandler);
 	  
 	  var accessBoxHeight = (sizes.publisher.height > 142) ? sizes.publisher.height : 142;
 	  
@@ -108,7 +107,7 @@ _OT.widget = function() {
 	  ele.publisherContainer.style.visibility = 'hidden';
 	};
 	
-	var accessAllowedHandler = function(event) {
+	var placePublisher = function() {
 	  ele.publisherContainer.style.width = sizes.publisher.width + 'px';
 	  ele.publisherContainer.style.height = sizes.publisher.height + 'px';
 	  ele.publisherContainer.style.left = '0px';
@@ -129,6 +128,8 @@ _OT.widget = function() {
 				_OT.layoutContainer.addStream(divId, false);
 
 				session.subscribe(streams[i], divId);			
+			} else {
+				placePublisher();
 			}
 		}
 	};
