@@ -108,7 +108,7 @@ _OT.widget = function() {
 	  ele.publisherContainer.style.visibility = 'hidden';
 	};
 	
-	var accessAllowedHandler = function(event) {
+	var placePublisher = function(event) {
 	  ele.publisherContainer.style.width = sizes.publisher.width + 'px';
 	  ele.publisherContainer.style.height = sizes.publisher.height + 'px';
 	  ele.publisherContainer.style.left = '0px';
@@ -129,6 +129,8 @@ _OT.widget = function() {
 				_OT.layoutContainer.addStream(divId, false);
 
 				session.subscribe(streams[i], divId);			
+			} else {
+				placePublisher();
 			}
 		}
 	};
