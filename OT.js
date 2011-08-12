@@ -90,7 +90,6 @@ _OT.widget = function() {
 	  ele.publisherContainer.appendChild(div);
 	  
 	  publisher = session.publish('publisher', { width: sizes.publisher.width, height: sizes.publisher.height, name: properties.name });
-	  publisher.addEventListener('accessAllowed', accessAllowedHandler);
 	  
 	  var accessBoxHeight = (sizes.publisher.height > 142) ? sizes.publisher.height : 142;
 	  
