@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>layoutTest</title>
+		<script src="http://code.jquery.com/jquery-1.6.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="animate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layoutContainer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://staging.opentok.com/v0.91/js/TB.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+		
+			/*
+			 *	This is a test class for the animated layout container. It just adds a publisher
+			 *	to begin with and then every time you click the add button it adds a new subscriber.
+			 *	To do this it uses the layout container jQuery plugin and also uses a custom jQuery
+			 *	animation framework that plays nicely with SWFs.
+			*/
+		
+			var myStream;
+			var subscribers = [];
+			
+			TB.setLogLevel(TB.DEBUG);
+			var session = TB.initSession("2204468c5f55466fc2937c960b930235c5c911f6");
+			
+			session.addEventListener("sessionConnected", function(event) {
+				session.publish($("#layout").createElement());		// Start publishing
+				$("#layout").layout();					// Tell the layout container to lay itself out
+			});
+			
+			session.addEventListener("streamCreated", function(event) {
+				if (event.streams[0].connection.connectionId == session.connection.connectionId) {
+					myStream = event.streams[0];		// Store my own stream to subscribe to it later
+					$(".button").show();				// Show the add and remove buttons
+				}
+			});
+			session.connect("1127", "devtoken");
+			
+			function add() {
+				subscribers.push(session.subscribe(myStream, $("#layout").createElement()));		// Subscribe to me
+				$("#layout").layout(true);				// Tell the layout container to lay itself out and animate
+			}
+			
+			function remove() {
+				if (subscribers && subscribers.length > 0) {
+					var subscriber = subscribers.pop();
+					var parent = document.getElementById(subscriber.id).parentNode;
+					session.unsubscribe(subscriber);
+				 	parent.parentNode.removeChild(parent);
+					$("#layout").layout(true);			// Tell the layout container to lay itself out and animate
+				}
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+		<div id="layout" style="background-color: #dddddd; width: 600px; height: 400px;"></div>
+		<input type="submit" name="add" class="button" value="Add" id="add" onclick="add()" style="display:none">
+		<input type="submit" name="remove" class="button" value="Remove" id="remove" onclick="remove()" style="display:none">
+	</body>
+</html>
