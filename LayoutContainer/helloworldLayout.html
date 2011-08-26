@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>Hello World + Layout Container</title>
+		<!-- This app is the OpenTok Hello World sample app but using the layout container -->
+		<script src="http://staging.tokbox.com/v0.91/js/TB.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://code.jquery.com/jquery-1.6.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="animate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layoutContainer.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript" charset="utf-8">
+			var session = TB.initSession("1999041afec379118f621df94b2f07f46de5caac"); 
+			
+			session.addEventListener("sessionConnected", sessionConnectedHandler);
+			session.addEventListener("streamCreated", streamCreatedHandler);
+			session.addEventListener("streamDestroyed", streamDestroyedHandler);
+			
+			session.connect(1127, "devtoken"); // OpenTok sample API key and sample token string. 
+			
+			function sessionConnectedHandler(event) {
+				session.publish($("#hangout").createElement());
+				subscribeToStreams(event.streams);
+			}
+
+			function streamCreatedHandler(event) {
+				subscribeToStreams(event.streams);
+			}
+			
+			function streamDestroyedHandler(event) {
+				event.preventDefault();
+				
+				for (var i=0; i < event.streams.length; i++) {
+					var subscribers = session.getSubscribersForStream(event.streams[i]);
+					for (var j=0; j < subscribers.length; j++) {
+						var subscriber = subscribers[j];
+						var parent = document.getElementById(subscriber.id).parentNode;
+						session.unsubscribe(subscriber);
+				 		parent.parentNode.removeChild(parent);
+					};
+				};
+				$("#hangout").layout(true);
+			}
+			
+
+			function subscribeToStreams(streams) {
+				for (i = 0; i < streams.length; i++) {
+					var stream = streams[i];
+					if (stream.connection.connectionId != session.connection.connectionId) {
+						session.subscribe(stream, $("#hangout").createElement());
+					}
+				}
+				$("#hangout").layout(true);
+			}
+
+		</script>
+	</head>	
+	<body>
+		
+		<div id="hangout" style="width:640;height:480;background-color:#cccccc;"></div>
+		
+	</body>
+</html>
+
