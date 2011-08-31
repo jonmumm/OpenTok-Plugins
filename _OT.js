@@ -56,6 +56,8 @@ _OT.widget = function() {
 	//  HELPER METHODS
 	//--------------------------------------
 	var publishStream = function (_properties) {
+    // Only publish if we have the capability to
+    if (session.capabilities.publish != 1) return;
 	  
 	  // If we are already publishing, don't do anything
 	  if (publisher != null) return;
@@ -64,38 +66,48 @@ _OT.widget = function() {
 	  
 	  properties.publisherSize = _properties.publisherSize || properties.publisherSize;
 	  properties.name = _properties.name || properties.name;
+    properties.publishFull = _properties.publishFull || properties.publishFull; 
+
+    publisherProps = {};
+    publisherProps.name = properties.name;
+
+    if (!properties.publishFull) {
+      sizes.publisher = {};
+      switch (properties.publisherSize) {
+        case 'small':
+          sizes.publisher.width = 50;
+          sizes.publisher.height = 50;
+          break;
+        case 'medium':
+          sizes.publisher.width = 125;
+          sizes.publisher.height = 125;
+          break;	 
+        case 'large':
+          sizes.publisher.width = 200;
+          sizes.publisher.height = 200;
+          break;
+        default:
+          sizes.publisher.width = 125;
+          sizes.publisher.height = 125;
+      }		
+
+      publisherProps.width = sizes.publisher.width;
+      publisherProps.height = sizes.publisher.height;
+      
+      var accessBoxHeight = (sizes.publisher.height > 142) ? sizes.publisher.height : 142;
+      
+      ele.publisherContainer.style.left = ((sizes.container.width / 2) - (215 / 2)) + 'px';
+      ele.publisherContainer.style.top = ((sizes.container.height / 2) - (accessBoxHeight / 2)) + 'px';
+      ele.publisherContainer.style.visibility = 'visible';
+
+      var div = document.createElement('div');
+      div.setAttribute('id', 'publisher');
+      ele.publisherContainer.appendChild(div);
+    } else {
+      _OT.layoutContainer.addStream('publisher', true);
+    }
 	  
-	  sizes.publisher = {};	    
-	  switch (properties.publisherSize) {
-	    case 'small':
-	      sizes.publisher.width = 50;
-	      sizes.publisher.height = 50;
-	      break;
-	    case 'medium':
-	      sizes.publisher.width = 125;
-	      sizes.publisher.height = 125;
-	      break;	 
-      case 'large':
-	      sizes.publisher.width = 200;
-	      sizes.publisher.height = 200;
-	      break;
-      default:
-        sizes.publisher.width = 125;
-        sizes.publisher.height = 125;
-	  }		
-	  
-	  // Create the div
-	  var div = document.createElement('div');
-	  div.setAttribute('id', 'publisher');
-	  ele.publisherContainer.appendChild(div);
-	  
-	  publisher = session.publish('publisher', { width: sizes.publisher.width, height: sizes.publisher.height, name: properties.name });
-	  
-	  var accessBoxHeight = (sizes.publisher.height > 142) ? sizes.publisher.height : 142;
-	  
-	  ele.publisherContainer.style.left = ((sizes.container.width / 2) - (215 / 2)) + 'px';
-	  ele.publisherContainer.style.top = ((sizes.container.height / 2) - (accessBoxHeight / 2)) + 'px';
-	  ele.publisherContainer.style.visibility = 'visible';
+	  publisher = session.publish('publisher', publisherProps);
 	};
 	
 	var unpublishStream = function() {
@@ -128,7 +140,7 @@ _OT.widget = function() {
 				_OT.layoutContainer.addStream(divId, false);
 
 				session.subscribe(streams[i], divId);			
-			} else {
+			} else if (!properties.publishFull) {
 				placePublisher();
 			}
 		}
@@ -149,6 +161,8 @@ _OT.widget = function() {
 		  sizes.container.height = (properties.hasOwnProperty('height')) ? properties.height : 480;
 		  
 		  properties.publisherSize = properties.publisherSize || 'medium';
+
+      properties.publishFull = properties.publishFull || false;
 
 		  // Create the publisherContainer
 		  ele.publisherContainer = document.createElement('div');
