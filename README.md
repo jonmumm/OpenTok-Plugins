@@ -43,7 +43,7 @@ Browse the [Samples directory](https://github.com/jonmumm/OpenTok-Plugins/tree/m
 	* _publisherSize_: Size that the publisher is displayed at.  Accepts values 'small', 'medium', and 'large' (default: '_medium_').
 	* _name_: String name of the publisher (default: '').
 	* _autoPublish_: Boolean value on whether the widget should start publishing as soon as the session connects (default: _true_).
-  * _publishFull : Boolean value on whether the publisher should be shown at full size (true) or in a smaller window in the top left corner (default: _false_).
+  * _publishFull_: Boolean value on whether the publisher should be shown at full size (true) or in a smaller window in the top left corner (default: _false_).
 
 * **publish(properties)**  
 	Publishes the users stream to the session.  You only need to call this if you pass _{ autoPublish: false }_ as a property in init().
@@ -52,7 +52,7 @@ Browse the [Samples directory](https://github.com/jonmumm/OpenTok-Plugins/tree/m
 
 	* _publisherSize_: Size that the publisher is displayed at.  Accepts values 'small', 'medium', and 'large' (default: '_medium_').
 	* _name_: String name of the publisher (default: '').
-  * _publishFull : Boolean value on whether the publisher should be shown at full size (true) or in a smaller window in the top left corner (default: _false_).
+  * _publishFull_: Boolean value on whether the publisher should be shown at full size (true) or in a smaller window in the top left corner (default: _false_).
 
 * **unpublish()**  
 	Unpublishes the users stream.
