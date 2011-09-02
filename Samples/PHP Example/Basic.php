@@ -34,12 +34,12 @@
 	
 	<script type='text/javascript'>
 	
-		// Set OpenTok variables
+    // Set OpenTok variables
     var session = TB.initSession('<?php print $sessionId; ?>');
     var api_key = '<?php print API_Config::API_KEY; ?>';
     var token = '<?php print $token; ?>';
 
-		var widget = _OT.widget;
+    var widget = _OT.widget;
 
 		// Initialize the widget and pass it properties
 		widget.init(session, 'widgetContainer', { width: '500', height: '400', publisherSize: 'medium', name: 'OpenTok User 123', publishFull: false });
