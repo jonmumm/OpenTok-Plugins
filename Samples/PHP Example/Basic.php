@@ -41,8 +41,6 @@
 
 		var widget = _OT.widget;
 
-    TB.setLogLevel(TB.DEBUG);
-		
 		// Initialize the widget and pass it properties
 		widget.init(session, 'widgetContainer', { width: '500', height: '400', publisherSize: 'medium', name: 'OpenTok User 123', publishFull: false });
 		
