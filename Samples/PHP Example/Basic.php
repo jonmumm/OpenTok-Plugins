@@ -4,7 +4,7 @@
 <head>
 	<title>Widget Sample - Basic</title>
 	<script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
-	<script src='https://raw.github.com/jonmumm/OpenTok-Plugins/master/_OT.js'></script>
+	<script src='../../_OT.js'></script>
 </head>
 
 <body>
