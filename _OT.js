@@ -14,12 +14,13 @@ _OT.widget = function() {
 	var sessionConnectedHandler = function (event) {
 		// Subscribe to all streams currently in the Session
 		subscribeToStreams(event.streams);
-		_OT.layoutContainer.layout();
 		
 	  // Publish my stream to the session
 	  if (properties.autoPublish) {
 	    publishStream();
 	  }
+
+		_OT.layoutContainer.layout();
 	};
 
 	var streamCreatedHandler = function (event) {
@@ -137,7 +138,7 @@ _OT.widget = function() {
 				var divId = 'stream_' + streams[i].streamId;
 
 				// Pass in FALSE since this is a subscriber
-				_OT.layoutContainer.addStream(divId, false);
+				var containerDiv = _OT.layoutContainer.addStream(divId, false);
 
 				session.subscribe(streams[i], divId);			
 			} else if (!properties.publishFull) {
@@ -312,8 +313,9 @@ _OT.layoutContainer = function() {
 			};
 		},
 
-		addStream: function(divId) {
+		addStream: function(divId, publisher) {
 			var container = document.createElement("div");
+      container.setAttribute('id', "container-" + divId);
 
 			var div = document.createElement("div");
 			div.setAttribute('id', divId);
@@ -321,6 +323,8 @@ _OT.layoutContainer = function() {
 
 			var subscriberBox = document.getElementById(containerId);
 			subscriberBox.appendChild(container);			
+
+      return container;
 		},
 
 		removeStream: function(subscriberId) {
