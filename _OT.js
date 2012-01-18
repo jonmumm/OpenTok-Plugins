@@ -203,7 +203,10 @@ _OT.widget = function() {
 			}	
 		},
 		
-		publish: publishStream,
+		publish: function() {
+      		publishStream();
+      		return publisher;
+      	},
 		
 		unpublish: unpublishStream,
 
