@@ -107,6 +107,7 @@ _OT.widget = function() {
     } else {
       _OT.layoutContainer.addStream('publisher', true);
     }
+    publisherProps.wmode = "window";
 	  
 	  publisher = session.publish('publisher', publisherProps);
 	};
